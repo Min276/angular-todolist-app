@@ -14,7 +14,7 @@ import { CalendarModule } from './calendar/calendar.module';
     BrowserModule,
     AppRoutingModule,
     TaskListModule,
-    CalendarModule
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
