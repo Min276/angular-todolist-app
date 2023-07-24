@@ -1,0 +1,117 @@
+* {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .todo-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 500px;
+    margin: auto;
+  }
+
+  .input-group {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    padding-bottom: 11px;
+  }
+
+  input {
+    flex-grow: 1;
+    padding: 13px;
+    font-size: 16.5px;
+    color: #1c1c1c;
+    border-width: 2px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  ::placeholder {
+    color: rgb(56, 56, 56);  
+  }
+
+  input:focus {
+    border-style: solid;
+    outline: none !important;
+    border: 2px solid rgb(48, 48, 48);
+    box-shadow: 0 0 10px rgb(171, 171, 171);
+  }
+
+  .add-button {
+    border-style: none;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: rgb(23, 23, 23);
+    font-size: x-large;
+    font-weight: bold;
+    width: 3rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* color: white; */
+  }
+  button{
+    border-style: none;
+    cursor: pointer;
+    height: 100%;
+  }
+  .done-button {
+    background-color: rgb(23, 23, 23);
+    color: #ffffff;
+    width: 3rem;
+  }
+  .remove-button {
+    background-color: #ce0707;
+    color: #ffffff;
+    width: 2.5rem;
+  }
+
+  table {
+    list-style-type: none;
+    margin: auto;
+    width: 100%;
+    padding: 0%;
+  }
+
+  tr {
+    /* padding: 20px; */
+    height: 50px;
+    text-align: left;
+
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+
+  td {
+    margin-left: 1rem;
+  }
+
+  .even {
+    background-color: rgb(44, 44, 44);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  .odd {
+    background-color: rgb(11, 11, 11);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  .is-done {
+    text-decoration: line-through;
+  }
+
+  @media  screen and (max-width: 599px) {
+     .todo-list{
+        width: 100%;
+     }
+  }
