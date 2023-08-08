@@ -1,8 +1,6 @@
 <div>
-<mat-calendar [(selected)]="selectedDate"
-></mat-calendar>
-<p>
-{{ selectedDate.toLocaleDateString() }}
-<a [routerLink]="['/tasks', {date: selectedDate}]">Tasks List Page</a>
-</p>
+  <p>
+    <a routerLink="/tasks">Tasks List Page</a>
+  </p>
+  <mat-calendar [(selected)]="selectedDate"></mat-calendar>
 </div>

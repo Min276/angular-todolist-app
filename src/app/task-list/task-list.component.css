@@ -32,6 +32,7 @@
     border-width: 2px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    font-size: 18px;
   }
 
   ::placeholder {
@@ -55,22 +56,38 @@
     width: 3rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    /* color: white; */
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   button{
     border-style: none;
     cursor: pointer;
     height: 100%;
+    font-size: 16px;
   }
   .done-button {
     background-color: rgb(23, 23, 23);
     color: #ffffff;
-    width: 3rem;
+    width: 4rem;
   }
   .remove-button {
     background-color: #ce0707;
     color: #ffffff;
-    width: 2.5rem;
+    width: 3rem;
+  }
+
+  .edit-button {
+    background-color: rgb(23, 23, 23);
+    color: #ffffff;
+    width: 3.5rem;
+  }
+
+  .save-button {
+    background-color: rgb(109, 181, 0);
+    color: #ffffff;
+    width: 3rem;
   }
 
   table {
@@ -115,6 +132,10 @@
 
   .is-done {
     text-decoration: line-through;
+  }
+
+  p {
+    font-size: 18px;
   }
 
   @media  screen and (max-width: 599px) {

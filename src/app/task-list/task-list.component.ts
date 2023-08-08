@@ -1,59 +1,93 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  ViewChild,
+  ViewChildren,
+  OnInit,
+  ElementRef,
+  QueryList,
+} from '@angular/core';
+import { TodolistsService } from '../todolists.service';
 
 @Component({
   selector: 'task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  // date: Date;
+  constructor(private todolistService: TodolistsService) {}
 
-   constructor(private route: ActivatedRoute) {
-   }
-   ngOnInit(): void {
-     let date = new Date(this.route.snapshot.params['date']);
-    }
-    title = 'To Do List';
-    tasks: Task[] = [
-      new Task("Visit Ann"),
-      new Task("Call Dad"),
-      new Task("Go to the gym"),
-      new Task("Wash the dishes"),
-      new Task("Shop for the party")
-    ]
-  
-    @ViewChild('newTask') inputName: any; // accessing the reference element
-  
-  
-    add(newTask: string) {
-      if (newTask.trim().length > 0) {
-        this.tasks.push(new Task(newTask))
-        this.inputName.nativeElement.value = ""
-      }
-    }
-  
-    remove(existingTask: Task) {
-      let userConfirmed = confirm(`Are you sure you want to remove "${existingTask.title}" ?`)
-  
-      if (userConfirmed) {
-        this.tasks = this.tasks.filter(task => task != existingTask)
-      }
-    }
-  
+  tasks: any;
+  isEdit: boolean = false;
+  selectedItemId: any;
+  editTask: any;
+
+  fetchData() {
+    this.todolistService.getAllData()?.subscribe((data: any) => {
+      this.tasks = data;
+      console.log(data);
+    });
   }
-  
-  
-  class Task {
-  
-    constructor(public title: string) {
-  
+
+  ngOnInit(): void {
+    this.fetchData();
+  }
+
+  @ViewChild('newTask') inputName: any;
+
+  add(newTask: string) {
+    if (newTask.trim().length > 0) {
+      let body = {
+        task: newTask,
+        isDone: false,
+      };
+
+      this.todolistService.postData(body).subscribe((response) => {
+        console.log(response);
+        this.inputName.nativeElement.value = '';
+        this.fetchData();
+      });
     }
-  
-    toggleIsDone() {
-      this.isDone = !this.isDone;
+  }
+
+  //  @ViewChildren('ps')
+  // ps!: QueryList<ElementRef>;
+
+  updateTask(existingTask: any, editTask: any) {
+    if (existingTask.id) {
+      this.selectedItemId = existingTask.id;
+      this.isEdit = !this.isEdit;
+
+      // this.ps.toArray()[i].nativeElement.focus();
+
+      let id = existingTask.id;
+      let body = {
+        task: editTask.trim(),
+      };
+
+      if (editTask.trim() !== existingTask.task.trim()) {
+        this.todolistService.updateData(body, id).subscribe((response) => {
+          console.log(response);
+          this.fetchData();
+        });
+      }
     }
-  
-    public isDone = false;
-  
+  }
+
+  updateStatus(existingTask: any) {
+    let id = existingTask.id;
+    let body = {
+      isDone: !existingTask.isDone,
+    };
+    this.todolistService.updateData(body, id).subscribe((response) => {
+      console.log(response);
+      this.fetchData();
+    });
+  }
+
+  remove(existingTaskId: number) {
+    this.todolistService.deleteData(existingTaskId).subscribe((response) => {
+      console.log(response);
+      this.fetchData();
+    });
+  }
 }

@@ -1,0 +1,29 @@
+{
+  "todolists": [
+    {
+      "id": 1,
+      "task": "Meeting with core team",
+      "isDone": true
+    },
+    {
+      "id": 3,
+      "task": "Unit Testing",
+      "isDone": false
+    },
+    {
+      "id": 5,
+      "task": "Deliver Daily Tasks",
+      "isDone": false
+    },
+    {
+      "id": 6,
+      "task": "Project Beta Launch",
+      "isDone": false
+    },
+    {
+      "task": "Testing Updates",
+      "isDone": false,
+      "id": 7
+    }
+  ]
+}
